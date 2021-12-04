@@ -1,3 +1,5 @@
+import scala.io.Source
+
 object advent1 extends App {
 
   val trial = List(199,
@@ -11,9 +13,20 @@ object advent1 extends App {
   260,
   263)
 
-  println(trial.sliding(2).count {
-    case List(a, b) => b > a
-    case _ => false
+  def howManyIncreased(measurements: List[Int]): Int =
+    measurements.sliding(2).count {
+      case List(a, b) => b > a
+      case _ => false
+    }
+
+  assert(howManyIncreased(trial) == 7)
+
+  val fileName = "" // File name goes here
+  val source = Source.fromFile(fileName)
+  println({
+    val res = howManyIncreased(source.getLines().toList.map(_.toInt))
+    source.close()
+    res
   })
 
 }
