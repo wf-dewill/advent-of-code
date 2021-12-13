@@ -29,4 +29,12 @@ object advent1 extends App {
     res
   })
 
+
+  val intLines: Iterator[Int] = source.getLines().map(_.toInt)
+
+  def getSums(ints: List[Int]): List[Int] = ints.sliding(3).map(_.sum).toList
+
+  println(
+    howManyIncreased(getSums(intLines.toList))
+  )
 }
